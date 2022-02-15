@@ -1,9 +1,12 @@
 
 <?php
 session_start();
-
-if(isset($_SESSION['tipo']) && $_SESSION['tipo']=="ADMIN"){
-   header('Location: admin/index.php');  
+if(isset($_SESSION['usuario']['tipo'])){
+  if($_SESSION['usuario']['tipo'] != "ADMIN"){
+    header("Location: ./empleado/index.php");
+  }else if($_SESSION['usuario']['tipo'] != "EMPLEADO"){
+    header("Location: ./admin/index.php");
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -118,34 +121,28 @@ if(isset($_SESSION['tipo']) && $_SESSION['tipo']=="ADMIN"){
                     method: "post",
                     success: function(data) {
                         if(data != 'error'){
-                             Swal.fire({
-                              position: 'center',
-                              icon: 'success',
-                              title: '¡Hola '+data+'!',
-                              showConfirmButton: false,
-                              timer: 2000
-                            }).then(function(){
-                                 <?php
-                                    if($_SESSION['tipo']== "ADMIN"){
-                                        echo "window.location.href='admin/index.php';";
-                                    }
-                                    else if($_SESSION['tipo']== "EMPLEADO"){
-                                        echo "window.location.href='empleado/index.php';
-                                        ";
-                                    }   
-                                ?>
-                                location.reload();
-                            });
-                        
+                          var json = JSON.parse(data);
+                          Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: '¡Hola '+json.nombre+'!',
+                            showConfirmButton: false,
+                            timer: 2000
+                          }).then(function(){
+                            if(json.tipo == "EMPLEADO"){
+                              window.location.href = "./empleado/index.php";
+                            }else if(json.tipo == "ADMIN"){
+                              window.location.href = "./admin/index.php";
+                            }
+                          });
                         }else{
-                             Swal.fire({
-                              icon: 'error',
-                              title: 'Error al ingresar',
-                              text: 'Los datos son erróneos',
-                              confirmButtonText:'Aceptar'
-                            }).then(function(){
-                                window.location.href='login.php';
-                            });
+                          Swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: '¡Datos incorrectos, intenta de nuevo!',
+                            showConfirmButton: false,
+                            timer: 2000
+                          });
                         }
                     }
                 });

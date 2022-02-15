@@ -1,24 +1,27 @@
 <?php
-include("./header.php");
+include("./headerSolicitudes.php");
 ?>
 <!-- Main Content -->
 <div class="main-content">
   <section class="section">
     <div class="section-body">
     <!-- add content here -->
-      <div class="row">
-        <div id="publicaciones" class="col-md-7">
-          <h3>Comunicación Interna</h3>
-          <div id="pub_cont" class="row pub_content">
-
-          </div>
+    <h3>Solicitudes</h3>
+      <div class="row" id="preview_solicitudes">
+        <div class="col-sm-12" id="solicitudes_content">
         </div>
-        <div id="eventos" class="col-md-5">
-          <h3>Eventos</h3>
-          <div id="eventosContainer" class="ev_content row">
-            
-          </div>
+      </div>
+      <div class="row justify-content-center" id="tipo_solicitud">
+        <div class="col-sm-8">
+          <select id="motivo" class="form-select" aria-label="Default select example">
+            <option selected>Selecione el Tipo de Solicitud</option>
+            <option>Vacaciones</option>
+            <option>Dia Personal</option>
+            <option>Justificar Falta</option>
+          </select>
         </div>
+      </div>
+      <div class="row justify-content-center" id="solicitudes">
       </div>
     </div>
   </section>
@@ -53,7 +56,7 @@ include("./header.php");
   <!-- Custom JS File -->
   <script src="assets/js/custom.js"></script>
   <script src="assets/js/chart.min.js"></script>
-  <script src="assets/js/empleado.js"></script>
+  <script src="assets/js/solicitudes.js"></script>
 </body>
 
 

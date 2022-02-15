@@ -2,3 +2,245 @@
 /*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3VzdG9tLmNzcyIsInNvdXJjZXMiOlsiY3VzdG9tLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiJ9 */
 
 /*# sourceMappingURL=custom.css.map */
+
+
+#profile_preview{
+    background-color: #FFF;
+}
+
+#profile_preview .header .profile_pic img{
+    width: 100%;
+}
+
+#publicaciones{ 
+    padding: 0px 25px 10px 10px;
+}
+
+.main-content{
+    background: #e9e9eb;
+}
+
+#eventos{ 
+    padding: 0px 10px 10px 25px;
+}
+
+#eventos .evento{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #6363632b;
+}
+
+#eventos .accordion-header{
+    padding:0;
+}
+
+#eventos .accordion{
+    padding: 5px;
+}    
+
+#eventos .accordion button{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 10px;
+}
+
+#eventos .accordion button:focus{
+    background-color: #FFF;
+    color: black;
+    box-shadow: none;
+    border-bottom: 1px solid #e9e9eb;
+}
+
+.accordion-button:not(.collapsed){
+    color:black;
+    background-color: #FFF;
+    border: none;
+}
+
+#eventos .evento #nombre p{
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+#eventos .evento #fecha p{
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #a4a4a4;
+}
+
+#eventos .evento #desc p{
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 10px;
+}
+
+#eventos .evento #infoextra p{
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #a4a4a4;
+}
+
+#eventos .evento #infoextra p img{
+    width: 1.5rem;
+}
+
+#publicaciones .pub_content .publicacion{
+    background-color: #FFF;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #6363632b;
+    padding: 15px;
+    margin: 0 0 30px 0;
+}
+
+#publicaciones .pub_content .publicacion .header{
+    padding: 0 30px;
+}
+
+#publicaciones .pub_content .publicacion .header .usuario .profile_pic img{
+    width: 100%;
+    border-radius: 100%;
+}
+
+#publicaciones .pub_content .publicacion .header .usuario .nombre p{
+    margin: 0;
+    font-size: 1.5rem;
+    color: #393939;
+    font-weight: 700;
+}
+
+.oscuro:hover:before {
+    content:'';
+    position: absolute;
+        top: 0;
+    bottom: 0;
+    z-index: 9;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.6);
+}
+
+#publicaciones .pub_content .publicacion .header .usuario .hora p{
+    margin: 0;
+    font-size: .8rem;
+    color: #b4b1b1;
+    font-weight: 500;
+}
+
+.contenidoArticulo{
+    top: 0;
+    position: absolute;
+    margin: 30px;
+    z-index: 99;
+    display: none;
+    color: white;
+}
+
+#publicaciones .pub_content .publicacion .header .usuario .row{
+    display: flex;
+    align-items: center;
+}
+
+#publicaciones .pub_content .publicacion .header .usuario{
+    margin: 15px 0;
+}
+
+#publicaciones .pub_content .publicacion .header .descripcion p{
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+#publicaciones .pub_content .publicacion .body{
+    padding: 10px;
+}
+
+#publicaciones .pub_content .publicacion .body .articulo_img{
+    width: 100%;
+    height: 350px;
+    padding: 10px 20px;
+    object-fit: cover;
+}
+
+#preview_solicitudes{
+    background: #FFF;
+    padding: 20px;
+    border-radius: 5px;
+    height: 170px;
+    overflow-y: auto;
+    box-shadow: 0px 0px 10px #6363632b;
+}
+
+#solicitudes{
+    padding-bottom: 100px;
+}
+
+.solicitud{
+    background: #FFF;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.solicitud .col-sm-12{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.solicitud .col-sm-12 p{
+    margin: 5px;
+    font-size: 1rem;
+    text-shadow: 0 0 1px #00000052;
+    color: #393939;
+}
+
+.solicitud .col-sm-12 i{
+    margin: 5px;
+    font-size: 1rem;
+}
+
+.solicitud .col-sm-12 .pendiente{
+    color: #FBC658;
+    font-weight: 500;
+}
+
+.solicitud .col-sm-12 .aprobado{
+    color: #03B62E;
+    font-weight: 500;
+}
+
+.solicitud .col-sm-12 .rechazado{
+    color: #F74D0D;
+    font-weight: 500;
+}
+
+.solicitud .col-sm-12 #vermas:hover{
+    color: #3eb3ff;
+    cursor: pointer;
+}
+
+#tipo_solicitud{
+    margin: 10px -10px;
+}
+
+#enviar_solicitud_btn{
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    background: #3eb3ff;
+    color: #FFF;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#enviar_solicitud_btn:hover{
+    background: #2489cc;
+}
+
+#enviar_solicitud_btn i{
+    margin: 0 0 0 5px;
+}

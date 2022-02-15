@@ -100,19 +100,19 @@
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Menú</li>
-            <li class="dropdown active">
+            <li class="dropdown">
               <a href="index.php" class="nav-link"><i data-feather="home"></i><span>Inicio</span></a>
             </li>
             <li class="dropdown">
               <a href="#" class="nav-link"><i data-feather="users"></i><span>Nómina</span></a>
             </li>
-            <li class="dropdown">
+            <li class="dropdown active">
               <a href="./solicitudes.php" class="nav-link"><i data-feather="briefcase"></i><span>Solicitudes</span></a>
             </li>
             <li class="menu-header">ADMINISTRACIÓN</li>
             <li>
               <a class="nav-link" href="#"><i data-feather="settings"></i><span>Perfil</span></a>
             </li>    
-            </ul>
-          </aside>
-        </div>
+          </ul>
+        </aside>
+      </div>
