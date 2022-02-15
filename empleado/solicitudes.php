@@ -14,7 +14,7 @@ include("./headerSolicitudes.php");
       <div class="row justify-content-center" id="tipo_solicitud">
         <div class="col-sm-8">
           <select id="motivo" class="form-select" aria-label="Default select example">
-            <option selected>Selecione el Tipo de Solicitud</option>
+            <option value="0" selected>Selecione el Tipo de Solicitud</option>
             <option>Vacaciones</option>
             <option>Dia Personal</option>
             <option>Justificar Falta</option>
