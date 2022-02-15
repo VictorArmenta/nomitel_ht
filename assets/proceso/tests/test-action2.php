@@ -1,0 +1,29 @@
+<?php
+session_start();
+include('../../../connection/conn_db.php');
+
+	$aciertos=0;
+    foreach($_POST['idPregunta'] as $idPregunta){
+        
+       $sql = mysqli_query($conn, "SELECT * FROM respuestas WHERE correcta = 1 AND id_pregunta =".$idPregunta);
+
+        $respuesta = mysqli_fetch_assoc($sql);
+        if($respuesta['id'] == $_POST['optradio_'.$idPregunta]){
+            $aciertos++;
+        }
+    }
+    
+    $cali = ($aciertos * 100) / 11 ;
+    $cali_forma= bcdiv($cali, '1', 1);
+    
+    $datos = mysqli_query($conn, "SELECT * FROM postulados WHERE curp= '".$_SESSION['curp']."'");
+    
+    $ultimo = mysqli_fetch_assoc($datos);
+    
+
+    $inser = mysqli_query($conn, "UPDATE resul_test SET res_test2= '".$cali_forma."' WHERE id_postulados= '".$ultimo['id']."'");
+   echo "<script type='text/javascript'>
+	      			 window.location.href='test3.php';
+	      		</script>";          
+?>
+
