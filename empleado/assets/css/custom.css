@@ -201,17 +201,17 @@
     font-size: 1rem;
 }
 
-.solicitud .col-sm-12 .pendiente{
+.solicitud .col-sm-12 .pendiente, #motivoestado .pendiente{
     color: #FBC658;
     font-weight: 500;
 }
 
-.solicitud .col-sm-12 .aprobado{
+.solicitud .col-sm-12 .aprobado, #motivoestado .aprobado{
     color: #03B62E;
     font-weight: 500;
 }
 
-.solicitud .col-sm-12 .rechazado{
+.solicitud .col-sm-12 .rechazado, #motivoestado .rechazado{
     color: #F74D0D;
     font-weight: 500;
 }
@@ -243,4 +243,34 @@
 
 #enviar_solicitud_btn i{
     margin: 0 0 0 5px;
+}
+
+#motivoestado, .fechas{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+#motivoestado h5{
+    margin: 0 5px;
+}
+
+.fechas p{
+    margin: 0 2px;
+}
+
+.fechas {
+    font-size: .8rem;
+    color: #959494;
+    font-weight: 500;
+}
+
+#comentarioModal{
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+#motivoModal{
+    font-size: 1.5rem;
+    font-weight: 700;
 }

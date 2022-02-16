@@ -27,12 +27,11 @@ include("./headerSolicitudes.php");
   </section>
 </div>
 
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
+  <div class="modal fade" id="logoutModal">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
+                    <h5 class="modal-title" id="logoutTitle">¿Listo para salir?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -44,6 +43,24 @@ include("./headerSolicitudes.php");
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="modal fade" id="vermasModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="titleModal">Ver Mas</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row"><div class="col-sm-12" id="motivoestado"><h5 id="motivoModal">Vacaciones </h5><h5 id="estadoModal" class="pendiente">Pendiente</h5></div></div>
+            <div class="fechas"><p>Desde </p> <p id="desdeModal">12/02/2022</p> <p> Hasta </p> <p id="hastaModal"> 26/02/2022</p></div>
+            <p id="comentarioModal">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño.</p><a id="formatoModal" href="../formatos/1/36/nomina (1).pdf" target="_blank"><i class="fas fa-file"></i> nomina.pdf</a>
+          </div>
+        </div>
+      </div>
     </div>
     
   <!-- General JS Scripts -->

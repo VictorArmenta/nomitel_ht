@@ -85,15 +85,15 @@ const diaPersonal = document.createElement("div");
         diaPersonal.setAttribute("id", "diaPersonal");
         diaPersonal.setAttribute("class", "col-sm-8");
         diaPersonal.innerHTML = `
-        <div class="mb-3">
-            <label for="dia" class="form-label">Dia</label>
-            <input id="dia" type="date" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="comentario" class="form-label">Comentario</label>
-            <textarea class="form-control" id="comentario" rows="3"></textarea>
-        </div>
-    `;
+            <div class="mb-3">
+                <label for="dia" class="form-label">Dia</label>
+                <input id="dia" type="date" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="comentario" class="form-label">Comentario</label>
+                <textarea class="form-control" id="comentario" rows="3"></textarea>
+            </div>
+        `;
     var button = document.createElement("button");
         button.setAttribute("id", "enviar_solicitud_btn");
         var icon = document.createElement("i");
@@ -132,138 +132,161 @@ selForm = form => {
 enviarSolicitud = () => {
     switch ($("#motivo").val()){
         case "Vacaciones":
-            var desde = $("#desde").val().split("-")[2] + "/" + $("#desde").val().split("-")[1] + "/" + $("#desde").val().split("-")[0];
-            var hasta = $("#hasta").val().split("-")[2] + "/" + $("#hasta").val().split("-")[1] + "/" + $("#hasta").val().split("-")[0];
-            var comentario = $("#comentario").val();
-            var motivo = $("#motivo").val();
-            var param = {
-                action:"addSolicitud",
-                desde:desde,
-                hasta:hasta,
-                comentario:comentario,
-                motivo:motivo
-            };
-            $.ajax({
-                url:"./actions/solicitudes.php",
-                method:"POST",
-                data:param,
-                success:data=>{
-                    if(data == "true"){
-                        getSolicitudes();
-                        $("#desde").val("");
-                        $("#hasta").val("");
-                        $("#comentario").val("");
+            if($("#desde").val() != "" && $("#hasta").val() != "" && $("#comentario").val() != "" && $("#motivo").val() != ""){
+                var desde = $("#desde").val().split("-")[2] + "/" + $("#desde").val().split("-")[1] + "/" + $("#desde").val().split("-")[0];
+                var hasta = $("#hasta").val().split("-")[2] + "/" + $("#hasta").val().split("-")[1] + "/" + $("#hasta").val().split("-")[0];
+                var comentario = $("#comentario").val();
+                var motivo = $("#motivo").val();
+                var param = {
+                    action:"addSolicitud",
+                    desde:desde,
+                    hasta:hasta,
+                    comentario:comentario,
+                    motivo:motivo
+                };
+                $.ajax({
+                    url:"./actions/solicitudes.php",
+                    method:"POST",
+                    data:param,
+                    success:data=>{
+                        if(data == "true"){
+                            Swal.fire('Enviado', 'Solicitud Enviada', 'success');
+                            getSolicitudes();
+                            $("#desde").val("");
+                            $("#hasta").val("");
+                            $("#comentario").val("");
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        var msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Requested page not found. [404]';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Internal Server Error [500].';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                        }
+                        Swal.fire('Error', msg, 'error');
                     }
-                },
-                error: function (jqXHR, exception) {
-                    var msg = '';
-                    if (jqXHR.status === 0) {
-                        msg = 'Not connect.\n Verify Network.';
-                    } else if (jqXHR.status == 404) {
-                        msg = 'Requested page not found. [404]';
-                    } else if (jqXHR.status == 500) {
-                        msg = 'Internal Server Error [500].';
-                    } else if (exception === 'parsererror') {
-                        msg = 'Requested JSON parse failed.';
-                    } else if (exception === 'timeout') {
-                        msg = 'Time out error.';
-                    } else if (exception === 'abort') {
-                        msg = 'Ajax request aborted.';
-                    } else {
-                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
-                    }
-                    Swal.fire('Error', msg, 'error');
-                }
-            });
+                });
+            }else{
+                Swal.fire('', 'Todos los campos son requeridos', 'warning');
+            }
             break;
         case "Dia Personal":
-            var desde = $("#dia").val().split("-")[2] + "/" + $("#dia").val().split("-")[1] + "/" + $("#dia").val().split("-")[0];
-            var hasta = desde;
-            var comentario = $("#comentario").val();
-            var motivo = $("#motivo").val();
-            var param = {
-                action:"addSolicitud",
-                desde:desde,
-                hasta:hasta,
-                comentario:comentario,
-                motivo:motivo
-            };
-            $.ajax({
-                url:"./actions/solicitudes.php",
-                method:"POST",
-                data:param,
-                success:data=>{
-                    if(data == "true"){
-                        getSolicitudes();
-                        $("#dia").val("");
-                        $("#comentario").val("");
+            if($("#dia").val() != "" && $("#comentario").val() != "" && $("#motivo").val() != ""){
+                var desde = $("#dia").val().split("-")[2] + "/" + $("#dia").val().split("-")[1] + "/" + $("#dia").val().split("-")[0];
+                var hasta = desde;
+                var comentario = $("#comentario").val();
+                var motivo = $("#motivo").val();
+                var param = {
+                    action:"addSolicitud",
+                    desde:desde,
+                    hasta:hasta,
+                    comentario:comentario,
+                    motivo:motivo
+                };
+                $.ajax({
+                    url:"./actions/solicitudes.php",
+                    method:"POST",
+                    data:param,
+                    success:data=>{
+                        if(data == "true"){
+                            Swal.fire('Enviado', 'Solicitud Enviada', 'success');
+                            getSolicitudes();
+                            $("#dia").val("");
+                            $("#comentario").val("");
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        var msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Requested page not found. [404]';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Internal Server Error [500].';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                        }
+                        Swal.fire('Error', msg, 'error');
                     }
-                },
-                error: function (jqXHR, exception) {
-                    var msg = '';
-                    if (jqXHR.status === 0) {
-                        msg = 'Not connect.\n Verify Network.';
-                    } else if (jqXHR.status == 404) {
-                        msg = 'Requested page not found. [404]';
-                    } else if (jqXHR.status == 500) {
-                        msg = 'Internal Server Error [500].';
-                    } else if (exception === 'parsererror') {
-                        msg = 'Requested JSON parse failed.';
-                    } else if (exception === 'timeout') {
-                        msg = 'Time out error.';
-                    } else if (exception === 'abort') {
-                        msg = 'Ajax request aborted.';
-                    } else {
-                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
-                    }
-                    Swal.fire('Error', msg, 'error');
-                }
-            });
+                });
+            }else{
+                Swal.fire('', 'Todos los campos son requeridos', 'warning');
+            }
             break;
         case "Justificar Falta":
-            var desde = $("#desde").val().split("-")[2] + "/" + $("#desde").val().split("-")[1] + "/" + $("#desde").val().split("-")[0];
-            var hasta = $("#hasta").val().split("-")[2] + "/" + $("#hasta").val().split("-")[1] + "/" + $("#hasta").val().split("-")[0];
-            var comentario = $("#comentario").val();
-            var motivo = $("#motivo").val();
-            var param = {
-                action:"addSolicitud",
-                desde:desde,
-                hasta:hasta,
-                comentario:comentario,
-                motivo:motivo
-            };
-            $.ajax({
-                url:"./actions/solicitudes.php",
-                method:"POST",
-                data:param,
-                success:data=>{
-                    if(data == "true"){
-                        getSolicitudes();
-                        $("#desde").val("");
-                        $("#hasta").val("");
-                        $("#comentario").val("");
+            if($("#desde").val() != "" && $("#hasta").val() != "" && $("#comentario").val() != "" && $("#motivo").val() != "" && $("#formato").val() != ""){
+                var desde = $("#desde").val().split("-")[2] + "/" + $("#desde").val().split("-")[1] + "/" + $("#desde").val().split("-")[0];
+                var hasta = $("#hasta").val().split("-")[2] + "/" + $("#hasta").val().split("-")[1] + "/" + $("#hasta").val().split("-")[0];
+                var comentario = $("#comentario").val();
+                var motivo = $("#motivo").val();
+                var formato = document.getElementById("formato").files[0];
+                
+                var formData = new FormData();
+
+                formData.append("action", "addSolicitud");
+                formData.append("desde", desde);
+                formData.append("hasta", hasta);
+                formData.append("comentario", comentario);
+                formData.append("motivo", motivo);
+                formData.append("formato", formato);
+
+
+                $.ajax({
+                    url:"./actions/solicitudes.php",
+                    method:"POST",
+                    data:formData,
+                    processData: false,
+                    contentType: false,
+                    success:data=>{
+                        if(data == "true"){
+                            Swal.fire('Enviado', 'Solicitud Enviada', 'success');
+                            getSolicitudes();
+                            $("#desde").val("");
+                            $("#hasta").val("");
+                            $("#comentario").val("");
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        var msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Requested page not found. [404]';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Internal Server Error [500].';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                        }
+                        Swal.fire('Error', msg, 'error');
                     }
-                },
-                error: function (jqXHR, exception) {
-                    var msg = '';
-                    if (jqXHR.status === 0) {
-                        msg = 'Not connect.\n Verify Network.';
-                    } else if (jqXHR.status == 404) {
-                        msg = 'Requested page not found. [404]';
-                    } else if (jqXHR.status == 500) {
-                        msg = 'Internal Server Error [500].';
-                    } else if (exception === 'parsererror') {
-                        msg = 'Requested JSON parse failed.';
-                    } else if (exception === 'timeout') {
-                        msg = 'Time out error.';
-                    } else if (exception === 'abort') {
-                        msg = 'Ajax request aborted.';
-                    } else {
-                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
-                    }
-                    Swal.fire('Error', msg, 'error');
-                }
-            });
+                });
+            }else{
+                Swal.fire('', 'Todos los campos son requeridos', 'warning');
+            }
+
             break;
     }
 }
@@ -281,14 +304,79 @@ genSolicitudes = solicitudes => {
                 <i class="far fa-file"></i>
                 <p>${solicitud.motivo}</p>
                 <p>${solicitud.desde} a ${solicitud.hasta}</p>
-                <p id="estatus" class="${solicitud.estado.toLowerCase().replaceAll(" ", "")}">${solicitud.estado}</p>
+                <p id="estatus" class="${solicitud.estado.toLowerCase()}">${solicitud.estado}</p>
             `;
             var button = document.createElement("i");
                 button.setAttribute("id", "vermas");
                 button.setAttribute("class", "fas fa-search-plus");
+                button.addEventListener("click", e=>{
+                    getSolicitudInfo(solicitud.id);
+                });
             subSolicitudContent.appendChild(button);
         solicitudContent.appendChild(subSolicitudContent);
         container.appendChild(solicitudContent);
+    });
+}
+
+getSolicitudInfo = id => {
+    var param = {
+        action:"getSolicitudById",
+        id:id
+    };
+    $.ajax({
+        url:"./actions/solicitudes.php",
+        method:"POST",
+        data:param,
+        success:data=>{
+            var json = JSON.parse(data);
+            console.log(json);
+            $("#motivoModal").text(json.motivo);
+            $("#estadoModal").text(json.estado);
+            $("#estadoModal").removeClass(["pendiente", "aprobado", "rechazado"]);
+            $("#estadoModal").addClass(json.estado.toLowerCase());
+            $("#comentarioModal").text(json.comentario); 
+            switch (json.motivo) {
+                case "Vacaciones":
+                    $("#desdeModal").text(json.desde);
+                    $("#hastaModal").text(json.hasta);
+                    $("#formatoModal").hide();
+                    break;
+            
+                case "Dia Personal":
+                    $("#desdeModal").text(json.desde);
+                    $("#hastaModal").text(json.desde);
+                    $("#formatoModal").hide();
+                    break;
+                case "Justificar Falta":
+                    $("#desdeModal").text(json.desde);
+                    $("#hastaModal").text(json.hasta);
+                    $("#formatoModal").text(json.formato);
+                    $("#formatoModal").attr("href", "../formatos/" + json.id_empleado + "/" + json.id + "/" + json.formato);
+                    $("#formatoModal").show();
+                    break;
+            }
+            var modal = new bootstrap.Modal(document.getElementById("vermasModal"));
+            modal.show();
+        },
+        error: function (jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            Swal.fire('Error', msg, 'error');
+        }
     });
 }
 
@@ -302,7 +390,12 @@ getSolicitudes = () => {
         data:param,
         success:data=>{
             var json = JSON.parse(data);
-            genSolicitudes(json);
+            if(json.length > 0){
+                genSolicitudes(json);
+            }else{
+                var container = document.getElementById("solicitudes_content");
+                container.innerHTML = "<h3>NO HAY SOLICITUDES REALIZADAS</h3>";
+            }
         },
         error: function (jqXHR, exception) {
             var msg = '';

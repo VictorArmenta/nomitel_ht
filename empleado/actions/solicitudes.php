@@ -17,21 +17,51 @@ if(isset($_POST['action'])){
                 }
                 echo "]";
             break;
+        case 'getSolicitudById':
+                $id = $_POST["id"];
+                $sql = "SELECT * FROM solicitudes WHERE id={$id}";
+                $query = mysqli_query($conn, $sql);
+                $evento = mysqli_fetch_assoc($query);
+                echo json_encode($evento);
+            break;
         
         case "addSolicitud":
             $motivo = $_POST["motivo"];
             $desde = $_POST["desde"];
             $hasta = $_POST["hasta"];
-            $comentario = $_POST["comentario"];
-            if($motivo == "Justificar Falta"){
+            $comentario = $_POST["comentario"];  
+            $id_empleado = $_SESSION["empleado"]["id"];
+            $estado = "Pendiente";
 
+            if($motivo == "Justificar Falta"){
+                $formato = basename($_FILES["formato"]["name"]);
             }else{
                 $formato = "0";
             }
-            $id_empleado = $_SESSION["empleado"]["id"];
-            $estado = "Pendiente";
+
             $sql = "INSERT INTO solicitudes (motivo, desde, hasta, comentario, formato, id_empleado, estado) VALUES ('{$motivo}', '{$desde}', '{$hasta}', '{$comentario}', '{$formato}', {$id_empleado}, '{$estado}')";
             $query = mysqli_query($conn, $sql);
+
+            if($motivo == "Justificar Falta"){
+                $id = mysqli_insert_id($conn);
+                $target_dir = "../../formatos/{$id_empleado}/{$id}/";
+
+                if(!file_exists("../../formatos/{$id_empleado}")){
+                    mkdir("../../formatos/{$id_empleado}");
+                }else{
+                    if(!file_exists("../../formatos/{$id_empleado}/{$id}")){
+                        mkdir("../../formatos/{$id_empleado}/{$id}");
+                    }
+                }
+
+                if(!file_exists("../../formatos/{$id_empleado}/{$id}")){
+                    mkdir("../../formatos/{$id_empleado}/{$id}");
+                }
+
+                $target_file = $target_dir . $formato;
+                move_uploaded_file($_FILES["formato"]["tmp_name"], $target_file);
+            }
+
             if($query){
                 echo "true";
             }else{
