@@ -17,7 +17,7 @@ if($result = mysqli_fetch_assoc($query)){
         $id_usuario = $_SESSION['usuario']['id'];
         $hoy = date('d-m-Y H:i:s');
         mysqli_query($conn, "UPDATE usuarios SET fecha_login = '{$hoy}', estatus='ACTIVO' WHERE id={$id_usuario}");
-        echo '{"nombre":"'.$_SESSION['empleado']['nombre'].'", "tipo":"'.$_SESSION['usuario']['tipo'].'"}';
+        echo '{"nombre":"'.$_SESSION['empleado']['nombres'].'", "tipo":"'.$_SESSION['usuario']['tipo'].'"}';
     }else{
         echo "error";
     }

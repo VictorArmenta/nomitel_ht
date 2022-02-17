@@ -19,7 +19,7 @@ const vacaciones = document.createElement("div");
             <div class="col-sm-3">
                 <div class="input-group mb-3">
                     <span class="input-group-text">Dias</span>
-                    <input type="text" class="form-control" readonly value="2">
+                    <input id="dias" type="text" class="form-control" readonly value="2 ">
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@ const justificarFalta = document.createElement("div");
                 <div class="col-sm-3">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Dias</span>
-                        <input type="text" class="form-control" readonly value="2">
+                        <input id="dias" type="text" class="form-control" readonly value="2">
                     </div>
                 </div>
             </div>
@@ -117,6 +117,13 @@ selForm = form => {
         case "Vacaciones":
             container.innerHTML = "";
             container.appendChild(vacaciones);
+            $("#desde").change(()=>{
+                getDias();
+            });
+            
+            $("#hasta").change(()=>{
+                getDias();
+            });
             break;
         case "Dia Personal":
             container.innerHTML = "";
@@ -125,6 +132,13 @@ selForm = form => {
         case "Justificar Falta":
             container.innerHTML = "";
             container.appendChild(justificarFalta);
+            $("#desde").change(()=>{
+                getDias();
+            });
+            
+            $("#hasta").change(()=>{
+                getDias();
+            });            
             break;
     }
 }
@@ -155,6 +169,8 @@ enviarSolicitud = () => {
                             $("#desde").val("");
                             $("#hasta").val("");
                             $("#comentario").val("");
+                        }else{
+                            Swal.fire('Error', 'algo salio mal al enviar la solicitud', 'error');
                         }
                     },
                     error: function (jqXHR, exception) {
@@ -303,8 +319,8 @@ genSolicitudes = solicitudes => {
             subSolicitudContent.innerHTML = `
                 <i class="far fa-file"></i>
                 <p>${solicitud.motivo}</p>
-                <p>${solicitud.desde} a ${solicitud.hasta}</p>
-                <p id="estatus" class="${solicitud.estado.toLowerCase()}">${solicitud.estado}</p>
+                <p>${solicitud.fecha_inicio} a ${solicitud.fecha_final}</p>
+                <p id="estatus" class="${solicitud.estatus.toLowerCase()}">${solicitud.estatus}</p>
             `;
             var button = document.createElement("i");
                 button.setAttribute("id", "vermas");
@@ -331,25 +347,25 @@ getSolicitudInfo = id => {
             var json = JSON.parse(data);
             console.log(json);
             $("#motivoModal").text(json.motivo);
-            $("#estadoModal").text(json.estado);
+            $("#estadoModal").text(json.estatus);
             $("#estadoModal").removeClass(["pendiente", "aprobado", "rechazado"]);
-            $("#estadoModal").addClass(json.estado.toLowerCase());
+            $("#estadoModal").addClass(json.estatus.toLowerCase());
             $("#comentarioModal").text(json.comentario); 
             switch (json.motivo) {
                 case "Vacaciones":
-                    $("#desdeModal").text(json.desde);
-                    $("#hastaModal").text(json.hasta);
+                    $("#desdeModal").text(json.fecha_inicio);
+                    $("#hastaModal").text(json.fecha_final);
                     $("#formatoModal").hide();
                     break;
             
                 case "Dia Personal":
-                    $("#desdeModal").text(json.desde);
-                    $("#hastaModal").text(json.desde);
+                    $("#desdeModal").text(json.fecha_inicio);
+                    $("#hastaModal").text(json.fecha_inicio);
                     $("#formatoModal").hide();
                     break;
                 case "Justificar Falta":
-                    $("#desdeModal").text(json.desde);
-                    $("#hastaModal").text(json.hasta);
+                    $("#desdeModal").text(json.fecha_inicio);
+                    $("#hastaModal").text(json.fecha_final);
                     $("#formatoModal").text(json.formato);
                     $("#formatoModal").attr("href", "../formatos/" + json.id_empleado + "/" + json.id + "/" + json.formato);
                     $("#formatoModal").show();
@@ -417,4 +433,29 @@ getSolicitudes = () => {
             Swal.fire('Error', msg, 'error');
         }
     });
+}
+
+
+
+getDias = () => {
+    // DIA = 86,400,000 ms
+    if($("#desde").val() != "" && $("#hasta").val() != ""){
+        var desde = $("#desde").val();
+        var hasta = $("#hasta").val();
+
+        var fechaInicio = new Date(desde);
+        var fechaFin = new Date(hasta);
+
+        var diff = fechaFin - fechaInicio;
+        
+        var dias = (diff/86400000) + 1;
+
+        console.log(dias);
+
+        if(dias > 0){
+            $("#dias").val(dias);
+        }else{
+            $("#dias").val(0);
+        }
+    }
 }

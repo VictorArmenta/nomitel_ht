@@ -39,7 +39,7 @@ if(isset($_POST['action'])){
                 $formato = "0";
             }
 
-            $sql = "INSERT INTO solicitudes (motivo, desde, hasta, comentario, formato, id_empleado, estado) VALUES ('{$motivo}', '{$desde}', '{$hasta}', '{$comentario}', '{$formato}', {$id_empleado}, '{$estado}')";
+            $sql = "INSERT INTO solicitudes (motivo, fecha_inicio, fecha_final, comentario, formato, id_empleado, estatus) VALUES ('{$motivo}', '{$desde}', '{$hasta}', '{$comentario}', '{$formato}', {$id_empleado}, '{$estado}')";
             $query = mysqli_query($conn, $sql);
 
             if($motivo == "Justificar Falta"){

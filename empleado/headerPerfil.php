@@ -106,13 +106,13 @@
             <li class="dropdown">
               <a href="#" class="nav-link"><i data-feather="users"></i><span>Nómina</span></a>
             </li>
-            <li class="dropdown active">
+            <li class="dropdown">
               <a href="./solicitudes.php" class="nav-link"><i data-feather="briefcase"></i><span>Solicitudes</span></a>
             </li>
             <li class="menu-header">ADMINISTRACIÓN</li>
-            <li>
-              <a class="nav-link" href="./perfil.php"><i data-feather="settings"></i><span>Perfil</span></a>
-            </li>    
+            <li class="dropdown active">
+              <a href="./perfil.php" class="nav-link"><i data-feather="settings"></i><span>Perfil</span></a>
+            </li>      
           </ul>
         </aside>
       </div>

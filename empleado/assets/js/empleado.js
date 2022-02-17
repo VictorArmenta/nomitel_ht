@@ -8,7 +8,6 @@ window.onload = () => {
     time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
   
     if (time.length > 1) { // If time format correct
-      console.log("time correct");
       time = time.slice (1);  // Remove full string match value
       time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
       time[0] = +time[0] % 12 || 12; // Adjust hours
@@ -63,6 +62,7 @@ window.onload = () => {
       data:param,
       success:data=>{
         var json = JSON.parse(data);
+        console.log(json);
         var publicaciones = genPubs(json);
         var container = document.getElementById("pub_cont");
         container.innerHTML = "";
@@ -99,7 +99,7 @@ window.onload = () => {
         img.src = "./assets/img/users/"+evento.img;
       var infoextraC = document.createElement("p");
         infoextraC.append(img);
-        infoextraC.append(evento.nombre + ' ' + evento.apellido);
+        infoextraC.append(" " + evento.nombres + ' ' + evento.apellido_paterno + " " + evento.apellido_materno);
       var infoextra = document.createElement("div");
         infoextra.setAttribute("id", "infoextra");
         infoextra.appendChild(infoextraC);
@@ -204,154 +204,44 @@ window.onload = () => {
       var rowUp = document.createElement("div");
         rowUp.setAttribute("class", "row");
         rowUp.appendChild(header);
-      if(publicacion.articulos.length>1){
-        var indicators = document.createElement("div");
-          indicators.setAttribute("class", "carousel-indicators");
+
         var inner = document.createElement("div");
-          inner.setAttribute("class", "carousel-inner");
-          inner.addEventListener("mouseenter", e=>{
-            console.log(e);
-            var id = e.target.parentNode.id.split("-")[1];
-            console.log(id);
-            $("#"+id + " .contenidoArticulo").show();
-          });
-          inner.addEventListener("mouseleave", e=>{
-            var id = e.target.parentNode.id.split("-")[1];
-            console.log(id);
-            $("#"+id + " .contenidoArticulo").hide();
-          });
-        var first = true;
-        var x = 0;
-        publicacion.articulos.forEach(articulo => {
-          var imgSrcA = document.createElement("img");
-            imgSrcA.src = "./assets/img/posts/"+articulo.img;
-            imgSrcA.setAttribute("class", "d-block w-100");
-          var contenido = document.createElement("p");
-            contenido.setAttribute("class", "contenidoArticulo");
-
-
-            contenido.textContent = articulo.contenido;
-          var item = document.createElement("div");
-            if(first){
-              item.setAttribute("class", "oscuro carousel-item active");
-            }else{
-              item.setAttribute("class", "oscuro carousel-item");
-            }
-          item.appendChild(imgSrcA);
-          item.appendChild(contenido);
-          inner.appendChild(item);
-          var buttonInd = document.createElement("button");
-            buttonInd.setAttribute("type", "button");
-            buttonInd.setAttribute("data-bs-target", "#publicacion-"+publicacion.id);
-            buttonInd.setAttribute("data-bs-slide-to", x);
-            buttonInd.setAttribute("aria-label", "Slide ", x+1);
-            x++;
-            if(first){
-              buttonInd.setAttribute("class", "active");
-              buttonInd.setAttribute("aria-current", "true");
-              
-            }
-          indicators.appendChild(buttonInd);
-          first = false;
+        inner.setAttribute("class", "carousel-inner");
+        inner.addEventListener("mouseenter", e=>{
+          var id = e.target.parentNode.id.split("-")[1];
+          $("#"+id + " .contenidoArticulo").show();
         });
-        var spanP1 = document.createElement("span");
-          spanP1.setAttribute("class", "carousel-control-prev-icon");
-          spanP1.setAttribute("aria-hidden", "true");
-        var spanP2 = document.createElement("span");
-          spanP2.setAttribute("class", "visually-hidden");
-          spanP2.textContent = "Previous";
-        var previous = document.createElement("button");
-          previous.setAttribute("class", "carousel-control-prev");
-          previous.setAttribute("data-bs-target", "#publicacion-"+publicacion.id);
-          previous.setAttribute("type", "button");
-          previous.setAttribute("data-bs-slide", "prev");
-          previous.appendChild(spanP2);
-          previous.appendChild(spanP1);
-          previous.addEventListener("mouseenter", e=>{
-            console.log(e);
-            var id = e.target.parentElement.id;
-            $("#"+id + " .oscuro").hover();
-            
-          });
-          previous.addEventListener("mouseleave", e=>{
-            var id = e.target.parentElement.id.split("-")[1];
-            console.log(id);
-            $("#"+id + " .contenidoArticulo").hide();
-          });
-        var spanN1 = document.createElement("span");
-          spanN1.setAttribute("class", "carousel-control-next-icon");
-          spanN1.setAttribute("aria-hidden", "true");
-        var spanN2 = document.createElement("span");
-          spanN2.setAttribute("class", "visually-hidden");
-          spanN2.textContent = "Next";
-        var next = document.createElement("button");
-          next.setAttribute("class", "carousel-control-next");
-          next.setAttribute("data-bs-target", "#publicacion-"+publicacion.id);
-          next.setAttribute("type", "button");
-          next.setAttribute("data-bs-slide", "next");
-          next.appendChild(spanN2);
-          next.appendChild(spanN1);
-        var carousel = document.createElement("div");
-          carousel.setAttribute("id", "publicacion-"+publicacion.id);
-          carousel.setAttribute("class", "carousel  slide carousel-fade");
-          carousel.setAttribute("data-bs-ride", "carousel");
-          
-          carousel.appendChild(indicators);
-          carousel.appendChild(inner);
-          carousel.appendChild(previous);
-          carousel.appendChild(next);
-        var body = document.createElement("div");
-          body.setAttribute("class", "body col-sm-12");
-        var rowDown = document.createElement("div");
-          rowDown.setAttribute("class", "row");
-          rowDown.appendChild(carousel);
-        var publicacioni = document.createElement("div");
-          publicacioni.setAttribute("id", publicacion.id);
-          publicacioni.setAttribute("class", "publicacion");
-          publicacioni.appendChild(rowUp);
-          publicacioni.appendChild(rowDown);
-      } else{
-        var inner = document.createElement("div");
-          inner.setAttribute("class", "carousel-inner");
-          inner.addEventListener("mouseenter", e=>{
-            console.log(e);
-            var id = e.target.parentNode.id.split("-")[1];
-            console.log(id);
-            $("#"+id + " .contenidoArticulo").show();
-          });
-          inner.addEventListener("mouseleave", e=>{
-            var id = e.target.parentNode.id.split("-")[1];
-            console.log(id);
-            $("#"+id + " .contenidoArticulo").hide();
-          });
-        var imgSrcA = document.createElement("img");
-          imgSrcA.src = "./assets/img/posts/"+publicacion.articulos[0].img;
-          imgSrcA.setAttribute("class", "d-block w-100");
-        var contenido = document.createElement("p");
-          contenido.setAttribute("class", "contenidoArticulo");
-          contenido.textContent = publicacion.articulos[0].contenido;
-        var item = document.createElement("div");
-          item.setAttribute("class", "oscuro");
-          item.appendChild(imgSrcA);
-          item.appendChild(contenido);
-          inner.appendChild(item);
-        var carousel = document.createElement("div");
-          carousel.setAttribute("id", "publicacion-"+publicacion.id);
-          carousel.setAttribute("class", "carousel  slide carousel-fade");
-          carousel.setAttribute("data-bs-ride", "carousel");
-          
-          carousel.appendChild(inner);
-        var body = document.createElement("div");
-          body.setAttribute("class", "body col-sm-12");
-        var rowDown = document.createElement("div");
-          rowDown.setAttribute("class", "row");
-          rowDown.appendChild(carousel);
-        var publicacioni = document.createElement("div");
-          publicacioni.setAttribute("id", publicacion.id);
-          publicacioni.setAttribute("class", "publicacion");
-          publicacioni.appendChild(rowUp);
-          publicacioni.appendChild(rowDown);
-      }
+        inner.addEventListener("mouseleave", e=>{
+          var id = e.target.parentNode.id.split("-")[1];
+          $("#"+id + " .contenidoArticulo").hide();
+        });
+      var imgSrcA = document.createElement("img");
+        imgSrcA.src = "./assets/img/posts/"+publicacion.img;
+        imgSrcA.setAttribute("class", "d-block w-100");
+      var contenido = document.createElement("p");
+        contenido.setAttribute("class", "contenidoArticulo");
+        contenido.textContent = publicacion.contenido;
+      var item = document.createElement("div");
+        item.setAttribute("class", "oscuro");
+        item.appendChild(imgSrcA);
+        item.appendChild(contenido);
+        inner.appendChild(item);
+      var carousel = document.createElement("div");
+        carousel.setAttribute("id", "publicacion-"+publicacion.id);
+        carousel.setAttribute("class", "carousel  slide carousel-fade");
+        carousel.setAttribute("data-bs-ride", "carousel");
+        
+        carousel.appendChild(inner);
+      var body = document.createElement("div");
+        body.setAttribute("class", "body col-sm-12");
+      var rowDown = document.createElement("div");
+        rowDown.setAttribute("class", "row");
+        rowDown.appendChild(carousel);
+      var publicacioni = document.createElement("div");
+        publicacioni.setAttribute("id", publicacion.id);
+        publicacioni.setAttribute("class", "publicacion");
+        publicacioni.appendChild(rowUp);
+        publicacioni.appendChild(rowDown);
       publicacionesC.appendChild(publicacioni);
     });
     return publicacionesC;

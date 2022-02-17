@@ -167,7 +167,6 @@
 
 #preview_solicitudes{
     background: #FFF;
-    padding: 20px;
     border-radius: 5px;
     height: 170px;
     overflow-y: auto;
@@ -273,4 +272,43 @@
 #motivoModal{
     font-size: 1.5rem;
     font-weight: 700;
+}
+
+.perfil .accordion button{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.perfil .accordion button p{
+    margin: 0;
+}
+
+.perfil .accordion button::after{
+    height: 0;
+}
+
+.perfil .accordion .accordion-header{
+    padding: 0;
+}
+
+.btn-azul{
+    display: flex;
+    width: 100%;
+    align-items: center !important;
+    border: 0;
+    padding: 10px 20px;
+    font-weight: 500;
+    border-radius: 5px;
+    background: #3eb3ff;
+    color: #FFF;
+    margin-top: 10px;
+}
+
+.btn-azul:hover{
+    background: #2489cc;
+}
+
+.form-check-input{
+    margin: 0 !important;
 }
