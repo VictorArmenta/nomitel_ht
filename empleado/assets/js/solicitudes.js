@@ -19,7 +19,7 @@ const vacaciones = document.createElement("div");
             <div class="col-sm-3">
                 <div class="input-group mb-3">
                     <span class="input-group-text">Dias</span>
-                    <input id="dias" type="text" class="form-control" readonly value="2 ">
+                    <input id="dias" type="text" class="form-control" readonly value="0">
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@ const justificarFalta = document.createElement("div");
                 <div class="col-sm-3">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Dias</span>
-                        <input id="dias" type="text" class="form-control" readonly value="2">
+                        <input id="dias" type="text" class="form-control" readonly value="0">
                     </div>
                 </div>
             </div>
@@ -367,7 +367,7 @@ getSolicitudInfo = id => {
                     $("#desdeModal").text(json.fecha_inicio);
                     $("#hastaModal").text(json.fecha_final);
                     $("#formatoModal").text(json.formato);
-                    $("#formatoModal").attr("href", "../formatos/" + json.id_empleado + "/" + json.id + "/" + json.formato);
+                    $("#formatoModal").attr("href", "../formatos/" + json.id_empleado + "_" + json.id + "_" + json.formato);
                     $("#formatoModal").show();
                     break;
             }

@@ -163,7 +163,7 @@ window.onload = () => {
       var profilePicSrc = document.createElement("img");
         profilePicSrc.src = "../assets/img/users/"+publicacion.usuario.img;
       var nombreText = document.createElement("p");
-        nombreText.textContent = publicacion.usuario.nombre + " " + publicacion.usuario.apellido;
+        nombreText.textContent = publicacion.usuario.nombres + " " + publicacion.usuario.apellido_paterno, publicacion.usuario.apellido_materno;
       var profilePic = document.createElement("div");
         profilePic.setAttribute("class", "profile_pic col-sm-2");
         profilePic.appendChild(profilePicSrc);

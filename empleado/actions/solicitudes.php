@@ -44,20 +44,7 @@ if(isset($_POST['action'])){
 
             if($motivo == "Justificar Falta"){
                 $id = mysqli_insert_id($conn);
-                $target_dir = "../../formatos/{$id_empleado}/{$id}/";
-
-                if(!file_exists("../../formatos/{$id_empleado}")){
-                    mkdir("../../formatos/{$id_empleado}");
-                }else{
-                    if(!file_exists("../../formatos/{$id_empleado}/{$id}")){
-                        mkdir("../../formatos/{$id_empleado}/{$id}");
-                    }
-                }
-
-                if(!file_exists("../../formatos/{$id_empleado}/{$id}")){
-                    mkdir("../../formatos/{$id_empleado}/{$id}");
-                }
-
+                $target_dir = "../../formatos/{$id_empleado}_{$id}_";
                 $target_file = $target_dir . $formato;
                 move_uploaded_file($_FILES["formato"]["tmp_name"], $target_file);
             }

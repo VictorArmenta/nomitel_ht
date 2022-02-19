@@ -21,19 +21,19 @@ include("./headerPerfil.php");
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <label for="nombres" class="col-form-label">Nombre(s)</label>
-                                        <input id="nombres" class="form-control" type="text">
+                                        <input id="nombres" class="form-control" type="text" readonly>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="apellido_paterno" class="col-form-label">Apellido paterno</label>
-                                        <input id="apellido_paterno" class="form-control" type="text">
+                                        <input id="apellido_paterno" class="form-control" type="text" readonly>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="apellido_materno" class="col-form-label">Apellido Materno</label>
-                                        <input id="apellido_materno" class="form-control" type="text">
+                                        <input id="apellido_materno" class="form-control" type="text" readonly>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="fecha_nacimiento" class="col-form-label">Fecha de Nacimiento</label>
-                                        <input id="fecha_nacimiento" class="form-control" type="date">
+                                        <input id="fecha_nacimiento" class="form-control" type="date" readonly>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -43,17 +43,16 @@ include("./headerPerfil.php");
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="mail" class="col-form-label">Correo Electrónico</label>
-                                        <input id="mail" class="form-control" type="text">
+                                        <input id="mail" class="form-control" type="text" readonly>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="estado_civil" class="col-form-label">Estado Civil</label>
                                         <select id="estado_civil" class="form-select">
-                                            <option selected>Seleccione una Opción</option>
-                                            <option value="soltero">Soltero(a)</option>
-                                            <option value="vasado">Casado(a)</option>
-                                            <option value="union_libre">Union libre</option>
-                                            <option value="divorciado">Divorciado(a)</option>
-                                            <option value="viudo">Viudo(a)</option>
+                                            <option value="Soltero">Soltero(a)</option>
+                                            <option value="Casado">Casado(a)</option>
+                                            <option value="Union Libre">Union libre</option>
+                                            <option value="Divorciado">Divorciado(a)</option>
+                                            <option value="Viudo">Viudo(a)</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
@@ -65,13 +64,13 @@ include("./headerPerfil.php");
                                     <div class="col-sm-3">
                                         <label for="genero" class="col-form-label">Género</label>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="mujer" readonly>
                                                 <label class="form-check-label" for="flexRadioDefault1">
                                                     Mujer
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="hombre" readonly>
                                                 <label class="form-check-label" for="flexRadioDefault2">
                                                     Hombre
                                             </label>
@@ -109,22 +108,15 @@ include("./headerPerfil.php");
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="municipio" class="col-form-label">municipio</label>
-                                        <input id="municipio" class="form-control" type="text">
+                                        <input id="municipio" class="form-control" type="text" readonly>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="estado" class="col-form-label">Estado</label>
-                                        <input id="estado" class="form-control" type="text">
+                                        <input id="estado" class="form-control" type="text" readonly>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="colonia" class="col-form-label">Colonia</label>
-                                        <select id="colonia" class="form-select">
-                                            <option selected>Seleccione una Opción</option>
-                                            <option value="1">colonia 1</option>
-                                            <option value="2">colonia 2</option>
-                                            <option value="3">colonia 3</option>
-                                            <option value="4">colonia 4</option>
-                                            <option value="5">colonia 5</option>
-                                        </select>
+                                        <input id="colonia" class="form-control" type="text">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -186,18 +178,42 @@ include("./headerPerfil.php");
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <label for="ine" class="col-form-label">Ine</label>
-                                        <input id="ine" class="form-control" type="text">
+                                        <input id="ine" class="form-control" type="text" readonly>
                                     </div>
                                 </div>
-                                <div class="row justify-content-center">
+                                <!-- <div class="row justify-content-center">
                                     <div class="col-2">
                                         <button class="btn-azul">GUARDAR</button>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
                     
+                </div>
+            </div>
+        </div>
+        <div class="accordion" id="documentosPerfil">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingfour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <h3>Documentos</h3>
+                        <p>Agrega o edita tus documentos.</p>
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingfour" data-bs-parent="#documentosPerfil">
+                    <div class="accordion-body">
+                        <div class="card documentos">
+                            <div class="card-header">
+                                Documentos pendientes de firma
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-file"></i> <a id="com_domicilio"></a> <i style="margin-left: auto;" class="fas fa-file-download"></i> <i class="fas fa-file-signature"></i></li>
+                                <li class="list-group-item"><i class="fas fa-file"></i> <a id="acta_nacimiento"></a> <i style="margin-left: auto;" class="fas fa-file-download"></i> <i class="fas fa-file-signature"></i></li>
+                                <li class="list-group-item"><i class="fas fa-file"></i> <a id="carta_patronal"></a> <i style="margin-left: auto;" class="fas fa-file-download"></i> <i class="fas fa-file-signature"></i></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -234,6 +250,7 @@ include("./headerPerfil.php");
   <!-- Custom JS File -->
   <script src="assets/js/custom.js"></script>
   <script src="assets/js/chart.min.js"></script>
+  <script src="assets/js/perfil.js"></script>
 </body>
 
 

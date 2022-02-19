@@ -80,7 +80,7 @@
             class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
               <div class="dropdown-title">Hola <?php echo $_SESSION['empleado']["nombre"]; ?> </div>
-              <a href="#" class="dropdown-item has-icon"> <i class="far
+              <a href="./perfil.php" class="dropdown-item has-icon"> <i class="far
                 fa-user"></i> Perfil
               </a>
               <div class="dropdown-divider"></div>
