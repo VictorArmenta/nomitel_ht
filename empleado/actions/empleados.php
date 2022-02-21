@@ -17,7 +17,7 @@ if(isset($_POST['action'])){
             $colonia = $_POST["colonia"];
             $calle = $_POST["calle"];
             $no_ext = $_POST["no_ext"];
-            $no_int = $_POST["telefono"];
+            $no_int = $_POST["no_int"];
             
             $sql = "UPDATE empleados SET telefono='{$telefono}', estado_civil='{$estado_civil}', nacionalidad='{$nacionalidad}', codigo_postal='{$codigo_postal}', colonia='{$colonia}', calle='{$calle}', no_ext='{$no_ext}', no_int='{$no_int}' WHERE id={$id}";
             $query = mysqli_query($conn, $sql);

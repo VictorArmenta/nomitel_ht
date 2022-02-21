@@ -17,7 +17,7 @@
 }
 
 .main-content{
-    background: #e9e9eb;
+    background: #f5f5f5;
 }
 
 #eventos{ 
@@ -27,6 +27,7 @@
 #eventos .evento{
     background: white;
     border-radius: 5px;
+    border-left: 5px solid #3eb3ff;
     box-shadow: 0px 0px 10px #6363632b;
 }
 
@@ -35,7 +36,7 @@
 }
 
 #eventos .accordion{
-    padding: 5px;
+    padding: 0;
 }    
 
 #eventos .accordion button{
@@ -96,6 +97,7 @@
     box-shadow: 0px 0px 10px #6363632b;
     padding: 15px;
     margin: 0 0 30px 0;
+    border-left: 5px solid #3eb3ff;
 }
 
 #publicaciones .pub_content .publicacion .header{
@@ -114,7 +116,7 @@
     font-weight: 700;
 }
 
-.oscuro:hover:before {
+/* .oscuro:hover:before {
     content:'';
     position: absolute;
         top: 0;
@@ -123,7 +125,7 @@
     left: 0;
     right: 0;
     background-color: rgba(0,0,0,0.6);
-}
+} */
 
 #publicaciones .pub_content .publicacion .header .usuario .hora p{
     margin: 0;
@@ -152,7 +154,14 @@
 
 #publicaciones .pub_content .publicacion .header .descripcion p{
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+#publicacion_hora{
+    font-size: .7rem !important;
+    opacity: 80%;
 }
 
 #publicaciones .pub_content .publicacion .body{
@@ -283,7 +292,7 @@
 
 .perfil .accordion-button{
     border-bottom: 1px solid #d6d6d6;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
 }
 
 .perfil .accordion button p{

@@ -167,22 +167,20 @@ window.onload = () => {
       var profilePic = document.createElement("div");
         profilePic.setAttribute("class", "profile_pic col-sm-2");
         profilePic.appendChild(profilePicSrc);
+      var horaText = document.createElement("p");
+        horaText.setAttribute("id", "publicacion_hora");
+        preHora = publicacion.fecha.split(" ")[1];
+        preFecha = publicacion.fecha.split(" ")[0];
+        postFecha = preFecha.replaceAll("-", "/");
+        horaText.textContent = postFecha + " | " + tConvert(preHora.split(":")[0] + ":" + preHora.split(":")[1]);
       var nombre = document.createElement("div");
         nombre.setAttribute("class", "nombre col");
         nombre.appendChild(nombreText);
-      var horaText = document.createElement("p");
-      preHora = publicacion.fecha.split(" ")[1];
-      preFecha = publicacion.fecha.split(" ")[0];
-      postFecha = preFecha.replaceAll("-", "/");
-      horaText.textContent = postFecha + " | " + tConvert(preHora.split(":")[0] + ":" + preHora.split(":")[1]);
-      var hora = document.createElement("div");
-        hora.setAttribute("class", "hora col");
-        hora.appendChild(horaText);
+        nombre.appendChild(horaText);
       var row = document.createElement("div");
         row.setAttribute("class", "row");
         row.appendChild(profilePic);
         row.appendChild(nombre);
-        row.appendChild(hora);
       var usuario = document.createElement("div");
         usuario.setAttribute("class", "usuario col-sm-12");
         usuario.appendChild(row);
@@ -207,14 +205,14 @@ window.onload = () => {
 
         var inner = document.createElement("div");
         inner.setAttribute("class", "carousel-inner");
-        inner.addEventListener("mouseenter", e=>{
-          var id = e.target.parentNode.id.split("-")[1];
-          $("#"+id + " .contenidoArticulo").show();
-        });
-        inner.addEventListener("mouseleave", e=>{
-          var id = e.target.parentNode.id.split("-")[1];
-          $("#"+id + " .contenidoArticulo").hide();
-        });
+        // inner.addEventListener("mouseenter", e=>{
+        //   var id = e.target.parentNode.id.split("-")[1];
+        //   $("#"+id + " .contenidoArticulo").show();
+        // });
+        // inner.addEventListener("mouseleave", e=>{
+        //   var id = e.target.parentNode.id.split("-")[1];
+        //   $("#"+id + " .contenidoArticulo").hide();
+        // });
       var imgSrcA = document.createElement("img");
         imgSrcA.src = "./assets/img/posts/"+publicacion.img;
         imgSrcA.setAttribute("class", "d-block w-100");
