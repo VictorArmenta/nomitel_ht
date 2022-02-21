@@ -205,12 +205,13 @@ include("./headerPerfil.php");
                     <div class="accordion-body">
                         <div class="card documentos">
                             <div class="card-header">
-                                Documentos pendientes de firma
+                                <p>Documentos</p>
+                                <p style="margin-left:auto;">Descargar</p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><i class="fas fa-file"></i> <a id="com_domicilio"></a> <i style="margin-left: auto;" class="fas fa-file-download"></i> <i class="fas fa-file-signature"></i></li>
-                                <li class="list-group-item"><i class="fas fa-file"></i> <a id="acta_nacimiento"></a> <i style="margin-left: auto;" class="fas fa-file-download"></i> <i class="fas fa-file-signature"></i></li>
-                                <li class="list-group-item"><i class="fas fa-file"></i> <a id="carta_patronal"></a> <i style="margin-left: auto;" class="fas fa-file-download"></i> <i class="fas fa-file-signature"></i></li>
+                                <li class="list-group-item"><i class="fas fa-file"></i> <a id="com_domicilio"></a> <i id="com_domicilio_download" style="margin-left: auto;" class="fas fa-file-download download"></i></li>
+                                <li class="list-group-item"><i class="fas fa-file"></i> <a id="acta_nacimiento"></a> <i id="acta_nacimiento_download" style="margin-left: auto;" class="fas fa-file-download download"></i></li>
+                                <li class="list-group-item"><i class="fas fa-file"></i> <a id="carta_patronal"></a> <i id="carta_patronal_download" style="margin-left: auto;" class="fas fa-file-download p"></i></li>
                             </ul>
                         </div>
                     </div>

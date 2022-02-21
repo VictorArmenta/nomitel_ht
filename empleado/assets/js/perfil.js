@@ -63,26 +63,33 @@ setEmpleado = empleado => {
     $("#ine").val(empleado.ine);
     $("#imss").val(empleado.no_imss);
     $("#infonavit").val(empleado.credito_infonavit);
-    $("#com_domicilio").text(empleado.com_domicilio.split("/")[empleado.com_domicilio.split("/").length-1]);
-    $("#com_domicilio").attr("href", empleado.com_domicilio);
-    $("#com_domicilio").attr("target", "_blank");
-    $("#acta_nacimiento").text(empleado.acta_nacimiento.split("/")[empleado.acta_nacimiento.split("/").length-1]);
-    $("#acta_nacimiento").attr("href", empleado.acta_nacimiento);
-    $("#acta_nacimiento").attr("target", "_blank");
-    $("#carta_patronal").text(empleado.carta_patronal.split("/")[empleado.carta_patronal.split("/").length-1]);
-    $("#carta_patronal").attr("href", empleado.carta_patronal);
-    $("#carta_patronal").attr("target", "_blank");
+    $("#com_domicilio").text(empleado.com_domicilio);
+    $("#com_domicilio_download").click(()=>{
+        newTab(empleado.com_domicilio);
+    });
+    $("#acta_nacimiento").text(empleado.acta_nacimiento);
+    $("#acta_nacimiento_download").click(()=>{
+        newTab(empleado.acta_nacimiento);
+    });
+    $("#carta_patronal").text(empleado.carta_patronal);
+    $("#carta_patronal_download").click(()=>{
+        newTab(empleado.carta_patronal);
+    });
 }
 
 $(".btn-azul").click(e=>{
     updatePerfil();
 });
 
+newTab = doc =>{
+    window.open("./assets/documentos/"+doc, '_blank');
+}
+
 updatePerfil = () => {
     if($("#telefono").val() != "" && $("#estado_civil").val() != "" && $("#nacionalidad").val() != "" && $("#cp").val() != "" &&$("#colonia").val() != "" && $("#calle").val() != "" && $("#no_ext").val() != "" && $("#no_int").val() != ""){
         var telefono = $("#telefono").val();
-        var estado_civil = $("#estado_civil");
-        var nacionalidad = $("#nacionalidad");
+        var estado_civil = $("#estado_civil").val();
+        var nacionalidad = $("#nacionalidad").val();
         var codigo_postal = $("#cp").val();
         var colonia = $("#colonia").val();
         var calle = $("#calle").val();
